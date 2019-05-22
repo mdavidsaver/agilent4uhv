@@ -1,21 +1,17 @@
 #!../../bin/linux-x86_64/agilent4uhv
 
-#- You may have to change agilent4uhv to something else
-#- everywhere it appears in this file
-
-< envPaths
-
-cd "${TOP}"
+epicsEnvSet("EPICS_DB_INCLUDE_PATH", "$(PWD)/../../db:.")
+epicsEnvSet("STREAM_PROTOCOL_PATH", "$(PWD)/../../db")
 
 ## Register all support components
-dbLoadDatabase "dbd/agilent4uhv.dbd"
-agilent4uhv_registerRecordDeviceDriver pdbbase
+dbLoadDatabase("../../dbd/agilent4uhv.dbd")
+agilent4uhv_registerRecordDeviceDriver(pdbbase)
 
-## Load record instances
-#dbLoadRecords("db/xxx.db","user=wayne")
+drvAsynIPPortConfigure("DEV", "192.168.1.10:2115", 0, 0, 0)
 
-cd "${TOP}/iocBoot/${IOC}"
-iocInit
+#asynSetTraceMask("DEV",0,0x3f)
+#asynSetTraceIOMask("DEV",0,4)
 
-## Start any sequence programs
-#seq sncxxx,"user=wayne"
+dbLoadRecords("agilent_4UHV.db","P=VTST:,R=4:,PORT=DEV,CH=1")
+
+iocInit()

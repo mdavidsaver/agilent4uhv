@@ -6,7 +6,10 @@ include $(TOP)/configure/CONFIG
 #----------------------------------------------------
 # Create and install (or just install) into <top>/db
 # databases, templates, substitutions like this
-#DB += xxx.db
+
+DB += agilent_4UHV.db
+DB += agilent_4UHV.proto
+DB += agilent_4UHV_setpoint.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

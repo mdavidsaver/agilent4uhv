@@ -15,11 +15,13 @@ DBD += agilent4uhv.dbd
 # agilent4uhv.dbd will be made up from these files:
 agilent4uhv_DBD += base.dbd
 
-# Include dbd files from all support applications:
-#agilent4uhv_DBD += xxx.dbd
+agilent4uhv_DBD += asyn.dbd
+agilent4uhv_DBD += drvAsynSerialPort.dbd
+agilent4uhv_DBD += drvAsynIPPort.dbd
+agilent4uhv_DBD += stream.dbd
 
-# Add all the support libraries needed by this IOC
-#agilent4uhv_LIBS += xxx
+agilent4uhv_LIBS += stream
+agilent4uhv_LIBS += asyn
 
 # agilent4uhv_registerRecordDeviceDriver.cpp derives from agilent4uhv.dbd
 agilent4uhv_SRCS += agilent4uhv_registerRecordDeviceDriver.cpp
